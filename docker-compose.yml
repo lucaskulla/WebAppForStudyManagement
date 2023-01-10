@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+
+  backend:
+    image: backend:latest
+    build: ./Backend/back-end
+    restart: always
+    networks:
+      - project
+    ports:
+      - "3000:3000"
+  
+  frontend: 
+    image: frontend:latest
+    build: ./frontend
+    restart: always
+    networks: 
+      - project
+    ports:
+      - "8089:80"
+
+networks:
+  project:
+    name: project

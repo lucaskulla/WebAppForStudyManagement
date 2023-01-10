@@ -1,0 +1,187 @@
+{
+    "resourceType": "Questionnaire",
+    "url": "http://hapi.fhir.org/baseR4",
+    "status": "active",
+    "subjectType": [
+        "Patient"
+    ],
+    "date": "2020",
+    "item": [
+        {
+            "linkId": "2",
+            "text": "Zyklusnummer",
+            "type": "integer"
+        },
+        {
+            "linkId": "3",
+            "text": "Datum erster Zyklustag",
+            "type": "date"
+        },
+        {
+            "linkId": "4",
+            "text": "Zykluslaenge",
+            "type": "integer"
+        },
+        {
+            "linkId": "5",
+            "text": "Stoerfaktoren",
+            "type": "string"
+        },
+        {
+            "linkId": "6",
+            "text": "Kinderwunsch in diesem Zyklus",
+            "type": "choice",
+            "answerOption": [
+                {
+                    "valueString": "Ja"
+                },
+                {
+                    "valueString": "Nein"
+                },
+                {
+                    "valueString": "Unentschieden"
+                }
+            ]
+        },
+        {
+            "linkId": "7",
+            "text": "Sind sie schwanger",
+            "type": "choice",
+            "answerOption": [
+                {
+                    "valueString": "Ja"
+                },
+                {
+                    "valueString": "Nein"
+                },
+                {
+                    "valueString": "Unbekannt"
+                }
+            ],
+            "item": [
+                {
+                    "linkId": "7.1",
+                    "text": "SS-Test positiv",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "6",
+                            "operator": "=",
+                            "answerOption": "Ja"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "7.2",
+                    "text": "Verlaengerte Temperatur-Hochlage",
+                    "type": "boolean",
+                    "enableWhen": [
+                        {
+                            "question": "6",
+                            "operator": "=",
+                            "answerOption": "Ja"
+                        }
+                    ]
+                },
+                {
+                    "linkId": "7.3",
+                    "text": "Ausscheider?",
+                    "type": "string",
+                    "enableWhen": [
+                        {
+                            "question": "6",
+                            "operator": "=",
+                            "answerOption": "Unbekannt"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "linkId": "8",
+            "text": "Erster fruchtbarer Tag nach trackle",
+            "type": "integer"
+        },
+        {
+            "linkId": "9",
+            "text": "Erster fruchtbarer Tag nach Sensiplan",
+            "type": "integer"
+        },
+        {
+            "linkId": "10",
+            "text": "Erste höhere Messung nach trackle",
+            "type": "integer"
+        },
+        {
+            "linkId": "11",
+            "text": "Erste höhere Messung nach Sensiplan",
+            "type": "integer"
+        },
+        {
+            "linkId": "12",
+            "text": "Ende der Temperatusauswertung nach trackle",
+            "type": "integer"
+        },
+        {
+            "linkId": "13",
+            "text": "Ende der Temperatusauswertung nach Sensiplan",
+            "type": "integer"
+        },
+        {
+            "linkId": "14",
+            "text": "Letzter fruchtbarer Tag nach trackle",
+            "type": "integer"
+        },
+        {
+            "linkId": "15",
+            "text": "Letzter fruchtbarer Tag nach Sensiplan",
+            "type": "integer"
+        },
+        {
+            "linkId": "16",
+            "text": "GV pro Zyklustag",
+            "type": "array",
+            "prefixItems": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "enum": [
+                        "Kein GV",
+                        "Ungeschuetzter GV",
+                        "Kondom",
+                        "anderes Verhuetungsmittel",
+                        "keine Angabe"
+                    ]
+                }
+            ],
+            "items": false
+        },
+        {
+            "linkId": "17",
+            "text": "Messort Aufwachtemperatur",
+            "type": "choice",
+            "answerOption": [
+                {
+                    "valueString": "Rektal"
+                },
+                {
+                    "valueString": "Oral"
+                },
+                {
+                    "valueString": "Vaginal"
+                }
+            ]
+        },
+        {
+            "linkId": "18",
+            "text": "Zervixschleimbeginn",
+            "type": "integer"
+        },
+        {
+            "linkId": "19",
+            "text": "Zervixschleimhoehepunkt",
+            "type": "integer"
+        }
+    ]
+}
