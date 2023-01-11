@@ -1,0 +1,800 @@
+\documentclass[
+a4paper,
+11pt
+]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{calc}
+\usepackage{float}
+\usepackage{acronym}
+\usepackage{listingsutf8}
+\usepackage{xcolor}
+\hypersetup{
+	hidelinks=true,
+	colorlinks=true,
+	linkcolor=black,
+	filecolor=green,
+	citecolor = black,
+	urlcolor=cyan,
+}
+\graphicspath{ {./photos/} }
+\usepackage[
+backend=biber,
+style=numeric,
+sorting=none
+]{biblatex}
+\addbibresource{pmi.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Custom colours
+
+\definecolor{UKHD}{RGB}{0, 74, 111}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Custom json scheme
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+	basicstyle=\normalfont\ttfamily,
+	numbers=left,
+	numberstyle=\scriptsize,
+	stepnumber=1,
+	numbersep=8pt,
+	showstringspaces=false,
+	breaklines=false,
+	frame=lines,
+	backgroundcolor=\color{background},
+	literate=
+	*{0}{{{\color{numb}0}}}{1}
+	{1}{{{\color{numb}1}}}{1}
+	{2}{{{\color{numb}2}}}{1}
+	{3}{{{\color{numb}3}}}{1}
+	{4}{{{\color{numb}4}}}{1}
+	{5}{{{\color{numb}5}}}{1}
+	{6}{{{\color{numb}6}}}{1}
+	{7}{{{\color{numb}7}}}{1}
+	{8}{{{\color{numb}8}}}{1}
+	{9}{{{\color{numb}9}}}{1}
+	{:}{{{\color{punct}{:}}}}{1}
+	{,}{{{\color{punct}{,}}}}{1}
+	{\{}{{{\color{delim}{\{}}}}{1}
+	{\}}{{{\color{delim}{\}}}}}{1}
+	{[}{{{\color{delim}{[}}}}{1}
+	{]}{{{\color{delim}{]}}}}{1},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Custom Image resize command
+
+\newlength{\textBoxHeight}
+\newlength{\imageHeight}
+
+\newcommand{\textAndImage}[4]{
+	
+	\settototalheight{\textBoxHeight}{\vbox{#1}}
+	#1
+	\setlength{\imageHeight}{\textheight-(\textBoxHeight+75pt)}
+	\vfill
+	\begin{center}
+		\begin{figure}[h!]
+			\includegraphics[width=\linewidth,height=\imageHeight,keepaspectratio=true]{#2}
+			\caption{#3}
+			\label{#4}
+		\end{figure}
+	\end{center}
+	\vfill
+}
+
+%Usage: \textAndImage{Text above the image}{Path to image}{Caption}{figure label e.g. fig:xx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Web App - for study management}
+\author{
+	Geck, Nicole
+	\and
+	Gkazgkalidou, Eleni
+	\and
+	Heitlinger, Marius
+	\
+	\and
+	Krüger, Julika
+	\and
+	Kulla, Lucas
+	\and
+	Leibensperger, David
+}
+
+\begin{document}
+	\pagenumbering{gobble}
+	\maketitle
+	\begin{center}
+		\LARGE Heilbronn University of Applied Sciences
+		\\
+		\LARGE Ruprecht Karl University of Heidelberg
+		\\
+		\LARGE Medizinische Informatik Bachelor - Semester 5
+		\\
+		Anwendungsbezogene Medizinische Informatik
+		\\
+		Lecturer: Max Wolfgang Seitz
+	\end{center}
+	\newpage
+	
+	\begin{abstract}
+		\noindent Period  and cycle tracking are important tools for managing reproductive health and family planning. They can help individuals understand their menstrual cycle and make informed decisions about contraception and pregnancy. There are various helpful methods that support individuals in charting their cycles. One of these methods is Sensiplan\textsuperscript{\textcopyright}. Sensiplan\textsuperscript{\textcopyright} is a paper-based methodology that can help determine fertility windows as well as visualize and interpret menstrual cycles. To compare Sensiplans\textsuperscript{\textcopyright} overall effectiveness against digital period trackers, a research database was set up, in which study nurses manually manage data from both Sensiplan\textsuperscript{\textcopyright} and period trackers. Considering this is both labor intensive and prone to errors, a web application supporting study nurses and researchers in maintaining the database was conceptualised. To realize this web application, a back-, and front-end were developed. The back-end implements the \ac{FHIR} standard, which was chosen due to its flexibility and interoperability. Participant related data is stored in the \ac{FHIR} resources \textit{patient} and \textit{questionnaireResponse}. The back-end acts as middle-ware between a public \ac{FHIR} server, used for testing and validation purposes, and the front-end. Communication is realized via a REST interface using \ac{HTTP} methods covering \ac{CRUD} operations, allowing data to be fetched and displayed in the front-end. To create the front-end \ac{UI} mockups were turned into different pages, sharing a uniform design and essential navigation features. Combining the simple and easy-to-use front-end with a responsive back-end the web application fulfills its purpose of supporting study nurses and researchers in managing the research database. Overall, this web application can improve the efficiency of study nurses and can be used to manage data in future studies. While this web application currently only supports one specific period tracker and is tailored to a specific hospital, the framework provided by this project through the use of standards like \ac{FHIR} and \ac{REST} is easily expandable in the future. Although the effectiveness of the web application can not yet be quantified, it is safe to assume that it will integrate well into an increasingly digitized workflow.
+	\end{abstract}
+	\newpage
+	\tableofcontents
+	\newpage
+	\pagenumbering{Roman}
+	\renewcommand{\thesection}{\Roman{section}}	
+	\addcontentsline{toc}{section}{List of abbreviations}
+	\section*{List of abbreviations}
+\begin{acronym}
+	\acro{API}{application programming interface}
+	\acro{CPU}{central processing unit}
+	\acro{CRUD}{create, read, update and delete}
+	\acro{DOM}{document object model}
+	\acro{Express}{Express.js}
+	\acro{FHIR}{Fast Healthcare Interoperability Resources'}
+	\acro{GUI}{Graphical user interface}
+	\acro{HL7}{Health Level 7}
+	\acro{HTML}{HyperText Markup Language}
+	\acro{HTTP}{Hypertext Transfer Protocol}
+	\acro{HTTPS}{Hypertext Transfer Protocol Secure}
+	\acro{I/O}{input/output}	
+	\acro{JS}{JavaScript}
+	\acro{JSON}{JavaScript Object Notation}
+	\acro{Node}{Node.js}
+	\acro{npm}{Node package manager}
+	\acro{OS}{Operating System}
+	\acro{PRO}{Patient Reported Outcome}
+	\acro{RDF}{Resource Description Framework}
+	\acro{REST}{Representational state transfer}
+	\acro{UI}{User interface}
+	\acro{URL}{Uniform Resource Locator}
+	\acro{UKHD}{Heidelberg University Hospital}
+	\acro{Vue}{Vue.js}
+	\acro{XML}{Extensible Markup Language}
+\end{acronym}
+
+\newpage
+\addcontentsline{toc}{section}{List of listings and figures}
+\section*{List of listings and figures}
+	
+\lstlistoflistings
+\listoffigures
+\listoftables
+\newpage
+\pagenumbering{arabic}
+\setcounter{section}{0}
+\renewcommand{\thesection}{\arabic{section}}
+	\section{Introduction}
+	
+	\subsection{Subject and motivation}
+	
+	\subsubsection{Subject and significance}
+	
+	Sensiplan\textsuperscript{\textcopyright} is a methodology maintained by the \ac{UKHD}. Utilizing \acp{PRO}, fertile days can be accurately determined. This supports users of Sensiplan\textsuperscript{\textcopyright} in both planned pregnancies as well as natural contraception. The \acp{PRO} consist of various data points on natural fertility such as basal body temperature, cycle day, cervical mucus, menstruation and intercourse. On account of a new study, a database is to be set up using the \ac{FHIR} standard. Previously \acp{PRO} consisted of data exclusively taken from paper forms, whereas \acp{PRO} now also incorporate data directly sourced from period trackers. The new research database will contain Sensiplan\textsuperscript{\textcopyright}-compliant \acp{PRO} from both period trackers and manually collected paper forms. To manage this heterogeneous database, a web application where \acp{PRO} can be displayed and manually edited is introduced.
+	
+	\subsubsection{Problem}
+	How can a web application be implemented that efficiently supports study nurses and researchers, in managing heterogeneous data from a research back-end, adhering to the following requirements?
+	\begin{itemize}
+		\item Creating, editing and deleting a participant
+		\item Creating a cycle of Sensiplan\textsuperscript{\textcopyright} data, editing and deleting the cycle
+		\item Creating a cycle of the period tracker data, editing and deleting the cycle
+		\item Creating a cycle of Sensiplan\textsuperscript{\textcopyright} and period tracker data, editing and deleting the cycle
+		\item Validation of inputted data
+	\end{itemize}
+	
+	\subsubsection{Motivation}
+	
+	Gathering, maintaining and preparing data is an important part of any study. Creating a tool that simplifies data entry and management will streamline data migration from the already existing database to the new research database. This supports study nurses in their administrative responsibilities, improves their efficiency and accuracy, allowing them to spend more time focusing on other duties.
+	
+	\subsection{Challenges}
+	
+	\begin{enumerate}
+		\item As it is not possible to automatically merge the data from the old database with the new one, a tool must be given, so the study nurses are able to manually collect the data for the study in the new database.
+		\item Moreover, the tool is needed to generally maintain the participant data and delete all records if required.
+		\item Data manipulation has to be possible, while staying consistent between users.
+		\item Testing data entry and manipulation.
+		\item Interoperable solution with \ac{FHIR}.
+	\end{enumerate}
+	
+	\subsection{Objectives}
+	
+	\begin{enumerate}
+		\item Development of a web-application to collect cycle data.
+		\item Mapping of cycle data on \ac{HL7} \ac{FHIR}.
+		\item Implementation of a \ac{REST} \ac{API} to add \ac{CRUD}-functionalities.
+		\item Testing and evaluation of the \ac{CRUD}-functionalities with a \ac{FHIR} test server.
+		\item General objectives:
+		\begin{enumerate}
+			\item Usability
+			\item Consistency
+			\item Interoperability
+			\item Maintainability
+		\end{enumerate}
+	\end{enumerate}
+	
+	\subsection{Approach}
+	In order to achieve the vision of a consistent and usable web application, a front-end and a back-end are implemented. While both implementations use different technologies, the front-end uses Webstorm as its preferred development environment and the back-end uses VisualStudio code. GitHub is in use as a version control system to ensure persistence of the code\cite{lucaskulla_pmi_2023}.
+	\newpage
+
+	\section{Foundation}
+	
+	\subsection{Standards}
+	
+	\subsubsection{FHIR}
+	\ac{FHIR} is a free and open source software standard offering high flexibility and scalability published by \ac{HL7}. \acp{FHIR} \ac{API} is simple and enables interoperability between servers without further configuration and facilitates the connection of multiple servers across different networks. \ac{FHIR} uses standardised resources to store data in the form of \ac{XML}, \ac{JSON} or Terse \ac{RDF} Triple Language. Those resources have a \ac{URL} to the address, a type, an identified version and contain a set of structured data elements. This set is defined by the resource type. Optional elements and properties have been defined for all resources: an ID, metadata, a base language and a reference to "Implicit Rules".  It is possible to link different \ac{FHIR} resources by their automatically generated ID. \ac{FHIR} resources are syntactically but not semantically interoperable. To ensure semantic interoperability, it is necessary to describe free text fields by terminologies. To develop the \ac{FHIR} standard, a \ac{REST}ful \ac{API} and several frameworks for messaging, document services and persistent storage and a database need to be implemented.\cite{noauthor_overview_nodate}
+	\subsubsection{Sensiplan\textsuperscript{\textcopyright}}
+	
+	Sensiplan\textsuperscript{\textcopyright} is a method for visualizing and interpreting the individual's menstrual cycle through fertility observation and intensive body perception. Used correctly it can be as effective as the pill after three cycles, making it a safe non-hormonal and less expensive option to avoid or even achieve conception\cite{noauthor_safety_nodate}. Everything the participants need to use Sensiplan\textsuperscript{\textcopyright} is a cycle form and a thermometer. Some of Sensiplan's\textsuperscript{\textcopyright} benefits include the ability to be started directly after hormonal contraception as well as increasing the awareness of partnership responsibility in family planning. Some downsides compared to other methods of family planning are the time needed to track data points daily and the impact an unhealthy lifestyle can have on the overall effectiveness of Sensiplan\textsuperscript{\textcopyright}.\cite{noauthor_home_nodate}
+	
+	\subsection{Technologies}
+	
+	\subsubsection{Axios}
+	Axios is a promise-based \ac{HTTP} client for \ac{Node} and web browsers. It is isomorphic, running in both browser and Node from the same codebase. On the server side it uses acp{Node} native \ac{HTTP} module, using \ac{XML} \ac{HTTP} Requests on the client/browser side. Axios intercepts request and response date, transforms them and aborts requests. The transformations are performed directly as \ac{JSON} data. It can also be used to protect the client side from Cross-Site-Request-Forgery. Axios also supports the \ac{JS} promise \ac{API}.\cite{noauthor_getting_nodate}
+	\subsubsection{Docker}
+	
+	Docker is a tool designed to solve the problem of 'dependency hell' caused by various runtime environments on different \acp{OS}, by creating containers that run all application dependencies on the Docker engine. This forms the basis for many cloud-native applications, helps to develop ideas quickly and securely, supports all types of applications and allows them to run on different operating systems. Docker is supported by an integrated BuildKit, which provides architectural enhancements to create faster, more accurate and portable applications. DockerCLI simplifies container management through a set of commands.\cite{noauthor_industry-leading_2021}
+	
+	\subsubsection{Express.js}
+	\ac{Express} \ac{Express} is a minimal and flexible web application framework that enhances \ac{Node}. It extends \acp{Node} core functionalities by providing a robust set of web application functions. Additionally, Express facilitates developing fast and simple \acp{API} that support multiple \ac{HTTP} service methods and middleware.\cite{noauthor_express_nodate}
+	
+	\subsubsection{Node.js}
+	
+	\ac{Node} is an open source development platform built to run server-side \ac{JS} code. In most applications \ac{Node} runs on a dedicated \ac{HTTPS} server. Node executes \ac{JS} requests asynchronously on a single thread, meaning that all operations are bundled into a single stack that processes events successively. To make that single stack as efficient as possible, \ac{Node} implements callbacks. Callbacks are functions that are called at completion in contrast to synchronous functions that are called and executed sequentially. This enables \ac{Node} to run other code in the meantime, allowing as many \ac{I/O} operations as the \ac{OS} can handle. Since \ac{JS} itself is single-threaded Node uses the system kernel to execute processes whenever possible. With virtually all \acp{OS} being multi-threaded, they can handle multiple operations simultaneously. Once an operation is completed, the assigned callback is returned to \ac{Node} where it is placed on top of the stack to eventually be executed. \ac{Node} avoids applications slowing down or even crashing due to long \ac{CPU} cycles by increasing the number of processes in favor of more complex ones. The asynchronous structure essentially prevents blocking the \ac{I/O} queue, making Node great at executing \ac{JS} at any scale.\cite{nodejs_about_nodate}
+	
+	\subsubsection{Vue.js}
+	\ac{Vue} \ac{Vue} is an open source library for creating interactive web interfaces. It can be effortlessly integrated into preexisting projects, by only providing the user interface/view layer. \ac{Vue} is versatility makes it a useful tool for Single-page applications, Full-stack and Server-side rendering, static site generation, desktop, mobile, and even terminal clients. \ac{Vue} uses reactive data-binding to achieve a data-driven view in the \ac{DOM}. Put simply, instead of updating the \ac{DOM} directly data is bound to \ac{HTML} templates via \acp{Vue} custom syntax. When data is updated changes are initially made to a virtual \ac{DOM}. The virtual \ac{DOM} is then compared against the real \ac{DOM}, rendering the differences. This allows for more updates at faster rates compared to updating the entire \ac{DOM}. \acp{Vue} component system is another core feature, adding another layer of abstraction.\cite{noauthor_introduction_nodate}
+	
+	\subsubsection{Vuetify}
+	
+	Vuetify is a Material Design component framework for \ac{Vue}\cite{noauthor_material_nodate}. It provides a variety of \ac{UI} components and features like a grid system, typography, and pre-designed \ac{UI} elements such as buttons, navigation, and form controls. One of the key benefits of using Vuetify is the consistency it provides across different devices through the use of responsive design principles. Vuetify ensures that the layout of the \ac{UI} automatically adjusts to fit the size of the screen it is being displayed on.\cite{noauthor_why_nodate}
+	
+	\subsubsection{Vue CLI}
+	
+	Vue CLI is a baseline tool for \ac{Vue}. It tracks different build tools present in the \ac{Vue} projects, streamlining their configurations and permitting changes without having to eject the web application. It is highly customizable with plugin support for \ac{npm} packages like Babel/TypeScript transpilation, ESLint integration, unit testing, and end-to-end testing.\cite{noauthor_overview_nodate-1}
+	
+	\subsubsection{REST}
+	\ac{REST} is an architectural design, based on \ac{CRUD} Methods, to build web services which allow creation of distributed systems. It is based on the idea of separating the client and server into distinct components, with the client responsible for making requests to the server and the server responsible for processing those requests and returning a response. \ac{REST}ful web services follow a set of guidelines, known as the \ac{REST} architectural style,which defines how the client and server should interact. These guidelines include the use of \ac{HTTP} verbs (such as GET, POST, PUT, and DELETE) to represent different actions, the use of \acp{URL} to identify resources, and the use of \ac{HTTP} status codes to indicate the success or failure of a request. \ac{REST}ful web services also use a standard data format, such as \ac{JSON} or \ac{XML}, to exchange information between the client and server. This allows for interoperability between different systems and allows developers to easily create and consume web services. Overall, \ac{REST} architectural design and \ac{REST}ful web services provide a simple and scalable way to build distributed systems and enable the creation of powerful \acp{API} for a wide range of applications.\cite{noauthor_what_nodate}
+
+	\section{Materials and methods}
+	
+	After analysing Sensiplan\textsuperscript{\textcopyright} and period tracker form as well as the questionnaire, the project was split into front-end and back-end.  The \ac{FHIR} standard was chosen, due to its interoperability and the projects medical context. The communication between front-end, back-end and a \ac{FHIR} server is realised by \ac{HTTP} methods.
+	
+	\subsection{Back-end}
+	The back-end is implemented to communicate with both the front-end and a \ac{FHIR} server using the following technologies:
+	\begin{itemize}
+		\item Axios version: 1.2.1
+		\item \ac{Express} version: 4.18.2
+		\item \ac{Node} version: 14.17.1
+		\item Docker version: 20.10.21
+		\item Visual Studio Code version: 1.74.2
+		\item \ac{FHIR} server version: 6.3.2-SNAPSHOT/312128754b/2022-11-30
+	\end{itemize}
+	\newpage
+	\subsection*{Approach}
+	For the realisation of the back-end, a \ac{FHIR} test server was specified that has at least version 6.3. Based on the questionnaire criteria, \textit{Patient} and \textit{QuestionnaireResponse} were selected from the list of \ac{FHIR} resources. A mapping process was then carried out to connect the Sensiplan\textsuperscript{\textcopyright} and Period Tracker forms to the selected \ac{FHIR} resources. As a consequence, the respective \ac{JSON} schema was evaluated in order to then fit the given questionnaire into the \ac{FHIR} resource \ac{JSON} schema. After setting a foundation, the implementation of the \ac{REST} interface was started, in the following order:
+	\begin{enumerate}
+		\item \ac{HTTP}-POST: ability to add a new \textit{Patient} and \textit{QuestionnaireResponse}
+		\item \ac{HTTP}-GET: ability  to retreive already added ressources.
+		\item \ac{HTTP}-DELETE: ability to delete earlier added ressources.
+		\item \ac{HTTP}-PUT: ability to alter added ressources.
+	\end{enumerate}
+	Testing of the \ac{REST} interface was performed to ensure that all criteria were met. A Docker container is used to host the back-end, which is executed via Docker.
+	
+	
+	\subsection*{FHIR test-server}
+	A public \ac{FHIR} test server is used in this prototype \cite{noauthor_swagger_nodate}. The \ac{FHIR} server offers various resources, like \textit{Questionnaire}, \textit{Patient}, \textit{Practitioner}, \textit{QuestionnaireResponse}, etc. for storing (medical) data. However, only \textit{Patient} and \textit{QuestionnaireResponse} are used in this web application.
+	
+	\newpage
+	
+	\subsubsection*{\textit{Patient} resource}
+	The \ac{FHIR} resource \textit{Patient} contains all relevant data for a given participant. Relevant data such as administrative, demographic and identifying data is stored in a \textit{Patient} object.\cite{noauthor_patient_nodate}
+	
+\begin{lstlisting}[language=json,firstnumber=1,caption={Patient.json},captionpos=b]
+{
+  "resourceType" : "Patient",
+  "identifier" : [{ Identifier }],
+  "active" : <boolean>,
+  "name" : [{ HumanName }],
+  "telecom" : [{ ContactPoint }],
+  "gender" : "<code>",
+  "birthDate" : "<date>",
+  "deceasedBoolean" : <boolean>,
+  "deceasedDateTime" : "<dateTime>",
+  "address" : [{ Address }],
+  "maritalStatus" : { CodeableConcept }
+  "multipleBirthBoolean" : <boolean>,
+  "multipleBirthInteger" : <integer>,
+  "photo" : [{ Attachment }],
+  "contact" : [{
+    "relationship" : [{ CodeableConcept }],
+    "name" : { HumanName },
+    "telecom" : [{ ContactPoint }],
+    "address" : { Address },
+    "gender" : "<code>",
+    "organization" : { Reference(Organization) },
+    "period" : { Period }
+  }],
+  "communication" : [{
+    "language" : { CodeableConcept },
+    "preferred" : <boolean>
+  }],
+  "generalPractitioner" : [{
+  	Reference(Organization|Practitioner|
+    PractitionerRole) }],
+  "managingOrganization" : {
+  	Reference(Organization) },
+  "link" : [{
+    "other" : { Reference(Patient|RelatedPerson) },
+    "type" : "<code>" }]
+}
+\end{lstlisting}
+
+	\newpage
+	
+	\subsubsection*{\textit{QuestionnaireResponse} resource}
+	The \ac{FHIR} resource \textit{QuestionnaireResponse} contains individual answers of participants to a questionnaire. This resource is split in two parts: Metadata like author or status and participant data in one or several item arrays.\cite{noauthor_questionnaireresponse_nodate}
+	
+	\begin{lstlisting}[language=json,firstnumber=1,caption={QuestionnaireResponse.json},captionpos=b]
+{
+  "resourceType" : "QuestionnaireResponse",
+  "identifier" : [{ Identifier }],
+  "basedOn" : [{
+  	Reference(CarePlan|ServiceRequest) }],
+  "partOf" : [{ Reference(Observation|Procedure) }],
+  "questionnaire" : "<canonical(Questionnaire)>",
+  "status" : "<code>",
+  "subject" : { Reference(Any) },
+  "encounter" : { Reference(Encounter) }, 
+  "authored" : "<dateTime>",
+  "author" : { Reference(Device|Organization
+  	|Patient|Practitioner|
+    PractitionerRole|RelatedPerson) },
+  "source" : { Reference(Device|Organization
+  	|Patient|Practitioner|
+    PractitionerRole|RelatedPerson) },
+  "item" : [{ "linkId" : "<string>",
+    "definition" : "<uri>", "text" : "<string>",
+    "answer" : [{ "valueBoolean" : <boolean>,
+      "valueDecimal" : <decimal>,
+      "valueInteger" : <integer>,
+      "valueDate" : "<date>",
+      "valueDateTime" : "<dateTime>",
+      "valueTime" : "<time>",
+      "valueString" : "<string>",
+      "valueUri" : "<uri>",
+      "valueAttachment" : { Attachment },
+      "valueCoding" : { Coding },
+      "valueQuantity" : {
+      	Quantity(SimpleQuantity) },
+      "valueReference" : { Reference(Any) },
+  "item" : [{
+    Content as for QuestionnaireResponse.item }]}],
+  "item" : [{
+    Content as for QuestionnaireResponse.item }]}]
+}
+\end{lstlisting}
+	
+	\subsection{Front-end}
+	
+	The front-end was implemented using a combination of frameworks. The following components and its versions were configured to meet the requirements of this particular project:
+	
+	\begin{itemize}
+		\item \ac{Vue} version: 2.6.14
+		\item Vuetify version: 2.6.0
+		\item Vue-axios version: 3.5.2
+		\item Vue-router version: 3.5.1
+		\item Axios version: 1.1.3
+		\item Core-js version: 3.8.3
+		\item Vue-cli-plugin-vuetify version: 2.5.8
+		\item \ac{Node} version: 19.1.0
+		\item Docker version: 20.10.21
+		\item Including babel of versions 7.12.16 and the corresponding Vue compatibility of versions 5.0.0
+		\item Webstorm version: 2022.2.3
+	\end{itemize}
+	
+	\noindent After the analysis of the given data mockups were created to evaluate and design a \ac{GUI} for data collection and management. Firstly, a basic design was needed, therefore, the following aspects were determined:
+	
+	\begin{enumerate}
+		\item Set an appropriate colour scheme
+		\item Set a global design for every page, this includes "Header" /  "Navigationbar", "Return button", "Font", "Font size" and "Input screen"
+		\item What pages are needed to fullfill the requirements
+		\item How pages connect / interact with each other
+		\item How to display error messages
+	\end{enumerate}
+	
+	\newpage
+	\subsection*{Colour scheme}
+	The evaluation of the colour scheme included different period trackers \cite{noauthor_trackle_nodate}, the colour scheme of the corresponding clinic and overall well designed web applications \cite{noauthor_uniklinik_nodate}.
+	
+	
+	\subsection*{Global design}
+	The decision was made to include a global header / navigation-bar for every single page. Additionally functions like returning to last page, display of multiple objects (Patients, Periods) and design of the input screen for the questionnaires need to be harmonized, in order to simplify the web application.
+	
+	\subsection*{Pages}
+	In order to provide the needed functionalities the following pages are needed:
+	\begin{enumerate}
+		\item Homepage
+		\item Single patient overview using \ac{CRUD}
+		\item Single questionnaire overview using \ac{CRUD}
+	\end{enumerate}
+	
+	\subsection*{Connection between pages}
+	After determining the needed pages, a startpoint for the application was defined to be the homepage. From there one should be able to access the patient and questionnaire overview. Furthermore, due to logical restrictions it should not be possible to access the questionnaire overview from the patient overview.
+	
+	\subsection*{Display errors}
+	It is crucial to display occurring errors to the user. This should be done in a easy to understand and harmonized way. Therefore, a generic error message should be created.
+	\\
+	\\%HIER BITTE NOCH EINEN ABSTAND EINFÜGEN -> sollte nicht unter Display Error stehen.
+	To fulfill the criteria mockups were created to evaluate the prototype GUI. Following the mockups as the fundamental structure the front-end was implemented and tested. After implementing both back-end and front-end the connection between these two was achieved via \ac{HTTP} methods and tested.
+	\newpage
+	\textAndImage{}{photos/mockups/mHomepage.png}{Mockup homepage}{}
+	\newpage
+	\textAndImage{}{photos/mockups/mSingleCycleBeginningOfPage.png}{Mockup single cycle page}{}
+	\newpage
+	\textAndImage{}{photos/mockups/mAddCycleSensiplanDialogues.png}{Mockup Sensiplan\textsuperscript{\textcopyright} error dialogues}{}
+	\newpage
+	\section{Results}
+	\subsection{Back-end}
+
+	\textAndImage{\noindent The back-end functions as middle-ware between the front-end and the \ac{FHIR} test server. It provides a REST interface for the front-end. After processing an incoming request, a new request for the \ac{FHIR} test server's \ac{REST} interface is created in the back-end.}{photos/rest.png}{REST Structure}{fig:1}
+	\newpage
+	
+	\subsubsection*{REST Interface}
+	The REST interface supports the \ac{FHIR} resources \textit{Patient} and \textit{QuestionnaireResponse}. Both \ac{FHIR} resource types, have a dedicated handler that uses the \ac{HTTP} protocol to support full \ac{CRUD} functionality. Each \ac{CRUD} method has the same structure: address, header, body and return along with a status code of 200, 201 or 400. The incoming data from the front-end is processed according to the respective \ac{FHIR} resource schema and then sent to the \ac{FHIR} test server without further validation or processing. The \ac{FHIR} test server, on the other hand, validates all incoming resources referring to the given \ac{FHIR} resource schema and returns an error to the back-end if the request is not schema-compliant. Two types of error can occur in these processes:
+	\begin{enumerate}
+		\item The request from the front-end to the back-end is not valid, e.g. missing variables.
+		\item The \ac{FHIR} test-server validates the incoming \textit{Patient}/\textit{QuestionnaireResponse} resource as a variable type, not being schema conform.
+	\end{enumerate}
+	In the event of any error, the status code 400 is returned to the front-end as response to the request. If there is no data for a mandatory variable, they must be set to -1 or "-1". The \ac{HTTP}-PUT method overwrites the existing data within a resource if it already exists. If no resource exists for the passed ID, a new one is created instead.
+	\subsubsection*{\textit{Patient} handler}
+	\begin{itemize}
+		\item Create
+		\begin{itemize}
+			\item Create a \textit{Patient} resource with the \ac{HTTP}-POST method
+			\begin{itemize}
+				\item Address: localhost:3000/patient
+				\item Header: empty
+				\item Body: "idTrackle" (String), \textit{idSensiplan} (String), "idOldDB" (String)
+				\item Return: 201 and created \textit{Patient} resource if successful, 400 if IDs are missing
+			\end{itemize}
+		\end{itemize}
+		\item Read
+		\begin{itemize}
+			\item Get a \textit{Patient} resource with the \ac{HTTP}-GET method
+			\begin{itemize}
+				\item Address: localhost:3000/patient/:id
+				\item Header: \textit{idPatient} (String)
+				\item Body: empty
+				\item Return: 200 and \textit{Patient} resource if successful, 400 if \textit{Patient} does not exist
+			\end{itemize}
+			\item Get all linked \textit{QuestionnaireResponse} IDs for a given \textit{Patient} resource
+			\begin{itemize}
+				\item Address: localhost:3000/patient/:id/everything
+				\item Header: \textit{idPatient} (String)
+				\item Body: empty
+				\item Return: 200 and \ac{JSON} object with all corresponding \textit{QuestionnaireResponse} IDs  if successful
+			\end{itemize}
+		\end{itemize}
+		\item Delete
+		\begin{itemize}
+			\item Delete a \textit{Patient} resource with the \ac{HTTP}-DELETE method
+			\begin{itemize}
+				
+				\item Address: localhost:3000/patient/:id
+				\item Header: \textit{idPatient} (String)
+				\item Body: empty
+				\item Return: 200 if successful, 400 if \textit{Patient} does not exist and 409 if \textit{Patient} has \textit{QuestionnaireResponse} resources linked
+			\end{itemize}
+		\end{itemize}
+		\item Update
+		\begin{itemize}
+			\item Update a \textit{Patient} resource with the \ac{HTTP}-PUT method
+			\begin{itemize}
+				\item Address: localhost:3000/patient/:id
+				\item Header: \textit{idPatient} (String)
+				\item Body: \textit{idTrackle} (String), \textit{idSensiplan} (String), \textit{idOldDB} (String)
+				\item Return: 201 and modified \textit{Patient} if successful, 400 if IDs are missing
+			\end{itemize}
+		\end{itemize}
+		
+	\end{itemize}
+	
+	\subsubsection*{\textit{QuestionnaireResponse} handler}
+	\begin{itemize}
+		\item Create:
+		\begin{itemize}
+			\item Create a \textit{QuestionnaireResponse} resource for Sensiplan\textsuperscript{\textcopyright} with a \ac{HTTP}-POST method
+			\begin{itemize}
+				\item Address: localhost:3000/QuestionnaireResponse/Sensiplan
+				\item Header: empty
+				\item Body: \textit{idPatient} (String) , questions 2 – 7\_3, 9,11,13,15 and 16 – 19
+				\item Return: 201 and created \textit{QuestionnaireResponse} resource if successful, 400 if missing fields
+			\end{itemize}
+		\newpage
+			\item Create a \textit{QuestionnaireResponse} resource for a period tracker with a \ac{HTTP}-POST method
+			\begin{itemize}
+				\item Address: localhost:3000/QuestionnaireResponse/trackle
+				\item Header: empty
+				\item Body: \textit{idPatient} (String) , questions 2 – 7\_3, 8,10,12,14 and 16 – 19
+				\item Return: 201 and created \textit{QuestionnaireResponse} resource if successful, 400 if missing fields
+			\end{itemize}
+		\end{itemize}
+		\begin{center}
+			\begin{table}[h]
+			\begin{tabular}{|c|c|c|}
+				\hline
+				\textbf{Question number} & \textbf{Type} & \textbf{Question} \\
+				\hline
+				\textit{idPatient} & Int & - \\
+				\hline
+				2 & Int & Cycle number \\
+				\hline
+				3 & Date & First cycle day \\
+				\hline
+				4 & Int & Cycle length \\
+				\hline
+				5 & String & Disturbing factor \\
+				\hline
+				6 & String & Childbearing preferences \\
+				\hline
+				7 & String & Pregnant \\
+				\hline
+				\multicolumn{3}{c}{\textbf{Only 7 when yes}} \\
+				\hline
+				7\_1 & Boolean & Test - positive? \\
+				\hline
+				7\_2 & Boolean & Prolonged high temperature \\
+				\hline
+				7\_3 & String & Ausscheider? \\
+				\hline
+				8 & Int & First fertile day (Trackle) \\
+				\hline
+				9 & Int & First fertile day (Sensiplan\textsuperscript{\textcopyright}) \\
+				\hline
+				10 & Int & First high temperature (Trackle) \\
+				\hline
+				11 & Int & First high temperature (Sensiplan\textsuperscript{\textcopyright}) \\
+				\hline
+				12 & Int & End of temperature evaluation (Trackle) \\
+				\hline
+				13 & Int & End of temperature evaluation (Sensiplan\textsuperscript{\textcopyright}) \\
+				\hline
+				14 & Int & Last fertile day (Trackle) \\
+				\hline
+				15 & Int & Last fertile day (Sensiplan\textsuperscript{\textcopyright}) \\
+				\hline
+				\multicolumn{3}{c}{\textbf{Intercourse per cycle day}} \\
+				\hline
+				16\_1 & String &  No intercourse \\
+				\hline
+				16\_2 & String &  Unprotected intercourse \\
+				\hline
+				16\_3 & String &  Intercourse with condom \\
+				\hline
+				16\_4 & String &  Intercourse with another contraceptive \\
+				\hline
+				16\_5 & String &  No data \\
+				\hline
+				17 & String &  Measuring location(wake up temperature) \\
+				\hline
+				18 & Int &  begin cervical mucus \\
+				\hline
+				19 & String &  Cervical mucus peak \\
+				\hline
+			\end{tabular}
+		\caption{Patient questions}
+		\end{table}
+		\end{center}
+	\newpage
+		\item Read
+		\begin{itemize}
+			\item Get a \textit{QuestionnaireResponse} resource with a \ac{HTTP}-GET method
+			\begin{itemize}
+				\item Address: localhost:3000/QuestionnaireResponse/:id
+				\item Header: \textit{idQuestionnaireResponse} (String)
+				\item Body: empty
+				\item Return: 200 and \textit{QuestionnaireResponse} resource if successful, 400 if \textit{QuestionnaireResponse} does not exist
+			\end{itemize}
+		\end{itemize}
+		\item Delete
+		\begin{itemize}
+			\item Delete a \textit{QuestionnaireResponse} resource with a \ac{HTTP}-DELETE method
+			\begin{itemize}
+				\item Address: localhost:3000/QuestionnaireResponse/:id
+				\item Header: \textit{idQuestionnaireResponse} (String)
+				\item Body: empty
+				\item Return: 200 if successful, 400 if \textit{QuestionnaireResponse} does not exist
+			\end{itemize}
+		\end{itemize}
+		\item Update
+		\begin{itemize}
+			\item Update a \textit{QuestionnaireResponse} resource for Sensiplan\textsuperscript{\textcopyright} with a \ac{HTTP}-PUT method
+			\begin{itemize}
+				\item Address: localhost:3000/QuestionnaireResponse/Sensiplan/:id
+				\item Header: \textit{idQuestionnaireResponse} (String)
+				\item Body: \textit{idQuestionnaireResponse} (String), \textit{idPatient} (String) , questions 2 – 7\_3, 9,11,13,15 and 16 – 19
+				\item Return: 201 and create a \textit{QuestionnaireResponse} resource if successful, 400 if fields are missing
+			\end{itemize}
+			\item Update a \textit{QuestionnaireResponse} resource for a period tracker with a \ac{HTTP}-PUT method        \begin{itemize}
+				\item Address: localhost:3000/QuestionnaireResponse/trackle/:id
+				\item Header: \textit{idQuestionnaireResponse} (String)
+				\item Body: \textit{idQuestionnaireResponse} (String), \textit{idPatient} (String),  questions 2 – 7\_3, 8,10,12,14 and 16 – 19
+				\item Return: 201 and create a \textit{QuestionnaireResponse} resource if successful, 400 if fields are missing
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+	\newpage
+	\subsection{Front-end}
+	The \ac{UKHD} colour scheme \textcolor{UKHD}{(Hexadecimal: 004a6f)} was chosen for the front-end, after various colour and component combinations have been tested and compared. The font: "Material Design spec Roboto Font" with size 12 was primarily used. The basic structure of the application provides a minimal design with a navbar leading to pages related to the participants as well as a start page with a logo. To improve user workflow, routing and inconsistencies during returning to previous pages, cancel and back buttons were added. The created pages are as following:
+	\begin{itemize}
+		\item a homepage with a logo
+		\item a participants page with the IDs (the current database, Sensiplan\textsuperscript{\textcopyright}, period tracker and of the old database)
+		\item a participant page with all IDs
+		\item a create participant page
+		\item an edit participant page
+		\item a cycles page with all cycles of the selected participant (with the cycle number, Sensiplan\textsuperscript{\textcopyright} and/or period tracker IDs)
+		\item an add cycle page with basic information to the cycle
+		\item some following pages to the add cycle page for adding a period tracker and/or Sensiplan\textsuperscript{\textcopyright} cycle
+		\item a single cycle page with both Sensiplan\textsuperscript{\textcopyright} and period tracker data
+		\item an editing page of cycle data with both Sensiplan\textsuperscript{\textcopyright} and period tracker data
+	\end{itemize}
+	\newpage
+	
+	\textAndImage{\noindent The following components have been selected from the Vuetify range: v-cards, number textfields, a date picker component, a navigation bar, v-data-table(s), v-select components and v-chip components. The start page can be accessed via the navbar. It consists of a welcome message for the users and a generated logo of the project.}{photos/homepage.png}{Homepage}{fig:2}
+	
+	\newpage
+	
+	\textAndImage{\noindent The participants page consists of a table presenting data such as \textit{idSensiplan}, \textit{idTrackle}, \textit{idOldDB} and \textit{idPatient}. In order to avoid overloading the front-end, with \ac{FHIR} created participants, only three participants were hardcoded into the server request. The site has several functions including the ability to search for IDs within the table and sort columns, a button to access a page for adding new participants, and the ability to click on a row to open a participant view with a router link.}{photos/participantsPage.png}{Participants page}{fig:3}
+	
+	\newpage
+	
+	\textAndImage{\noindent The participant view, which is accessed through the router, shows the four IDs and includes four buttons: showing the cycle site for the participant through a router link, going back to the participants table, editing the participant, and deleting the participant.}{photos/participantPage.png}{Participant page}{fig:4}
+	
+	\newpage
+	
+	\textAndImage{\noindent A participant can be added by adding the \textit{idtrackle}, \textit{idSensiplan} and/or \textit{idOldDB}.}{photos/createParticipant.png}{Create participant}{fig:5}
+	
+	\newpage
+	
+	\textAndImage{\noindent Validation of input data includes checking negative ID values, blank entries as well as permissible ID combinations, such as \textit{idOldDB} must be combined with either \textit{idSensiplan} or \textit{idTrackle}. Dialogues with detailed information about the incorrect inputs are the following:}{photos/errorMissingID.png}{Dialogue nothing filled, \textit{Participant pages}}{fig:6}
+	
+	\newpage
+	
+	\textAndImage{}{photos/errorNegID.png}{Dialogue negative ID, \textit{Participant pages}}{fig:7}
+	
+	\newpage
+	
+	\textAndImage{\noindent After saving the participant data can be edited. The validation of edited IDs corresponds with the create participant validations and also includes a verification of changes, so that unchanged data is not sent to the back-end.}{photos/editParticipantPage.png}{Edit participant page}{fig:8}
+	
+	\newpage
+	
+	\textAndImage{}{photos/errorNoChanges.png}{Dialogue no changes, \textit{Edit participant page}}{fig:9}
+	
+	\newpage
+	
+	\textAndImage{\noindent The Cycles page is similar to a Participant page. However, it contains the cycle number and the corresponding period \textit{idTrackle} and \textit{idSensiplan} if this cycle contains both, otherwise a zero is displayed, allowing filtering by Sensiplan\textsuperscript{\textcopyright} or Trackle.}{photos/cyclesPage.png}{Cycles page}{fig:10}
+	
+	\newpage
+	
+	\textAndImage{\noindent A new cycle can be added with the following information: cycle length, cycle days, intercourse, fertile days, and temperature. The user can then choose the cycle type (period tracker and or Sensiplan\textsuperscript{\textcopyright}) depending on the information collected from the participants and is transferred to that page.}{photos/addCyclePage.png}{Add cycle}{fig:11}
+	
+	\newpage
+	
+	\textAndImage{\noindent To create a valid cycle on the add cycle page, all entries except for the disturbance factor must be filled in. If the cycle length and number are incorrect, an error dialogue is displayed.}{photos/errorNegCycle.png}{ Dialogue numbers negative or not filled, \textit{Add cycle page}}{fig:12}
+	\newpage
+	
+	\textAndImage{\noindent In case the cycle number and length are correct, the following dialogue is displayed:}{photos/errorIncompCycle.png}{Dialogue not everything is filled, \textit{Add cycle page}}{fig:13}
+	\newpage
+	
+	\textAndImage{\noindent Following the add cycle page a Sensiplan\textsuperscript{\textcopyright} and/or a period tracking cycle can be created. To select a specific cycle day, v-select is used.}{photos/addCyclePage.png}{ Add cycle, \textit{first page}}{fig:14}
+	\newpage
+	
+	\textAndImage{}{photos/cyclePageSens.png}{Add cycle Sensiplan\textsuperscript{\textcopyright}}{fig:15}
+	\newpage
+	
+	\textAndImage{}{photos/cyclePageTrack.png}{Add cycle period tracker}{fig:16}
+	\newpage
+	
+	\textAndImage{\noindent In order to create a valid Sensiplan\textsuperscript{\textcopyright} or period tracker cycle, at least one entry must be filled in, in which case a dialogue with all missing entries is displayed and the user can decide whether to save the process or not. If no entry is filled in, a dialogue informs the user that the process will not be saved due to missing entries.}{photos/warningIncompleteSens.png}{Add cycle Sensiplan\textsuperscript {\textcopyright }, period tracker or both, \textit{incomplete entries}}{fig:17}
+	\newpage
+	
+	\textAndImage{}{photos/errorEmptySens.png}{Add cycle Sensiplan\textsuperscript {\textcopyright },\textit{ no entries}}{fig:18}
+	\newpage
+	
+	\textAndImage{}{photos/addCyclePageTrackSens.png}{Add cycle Sensiplan\textsuperscript{\textcopyright} and period tracker}{fig:19}
+	\newpage
+	
+	\textAndImage{}{photos/errorTrackSens.png}{Add cycle Sensiplan\textsuperscript {\textcopyright } and period tracker, \textit{not filled}}{fig:20}
+	
+	\newpage
+	
+	\textAndImage{\noindent The cycle page includes general cycle information at the top and middle sections consisting of side-by-side views of the period tracker and Sensiplan\textsuperscript{\textcopyright} data, with zero values if not present. The bottom of the cycle single view contains information about intercourse and general data points. It also includes tree buttons to edit or delete the cycle and also to return to the cycles page. The page is accessed through the router.}{photos/cyclePage.png}{Single cycle page}{fig:21}
+	\newpage
+	
+	\textAndImage{\noindent The editing of a selected cycle is limited by the return of the back-end. Invalid intercourse, Sensiplan\textsuperscript{\textcopyright} or period tracker data can be edited or removed and replaced by a zero. To ensure consistency and correctness of the cycle data, the cycle length cannot be changed.}{photos/cycleNoTrack.png}{Edit cycle, \textit{period tracker disabled}}{fig:22}
+	
+	\newpage
+	
+	\section{Discussion}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	Methodik ZWISCHEN DEN ABSÄTZEN LEERZEILEN EINF*GEN
+	
+	%Einleitende Worte
+	The final result of the project is a unique cross platform web application that supports study nurses and researchers in managing homogeneous data from a research back-end. Specifically, the application manages period data from both Sensiplan\textsuperscript{\textcopyright} and digital period trackers.
+	\\
+	\\%Frameworks
+	Vuetify was chosen as the graphical framework, with \ac{Vue} as \ac{JS} framework and Axios as a request library already in mind. To achieve an intuitive front-end, Vuetify mockups were created and realised with common features like a navbar and searchable tables. With \acp{Vue} lightweight and flexible design, the web application is able to run on different devices. The back-end is mainly implemented with Axios requests, resulting in a simplified and easy-to-understand back-end. Axios can be equally lightweight and powerful. Both front-end and back-end have been implemented through Docker, which allows for simple deployment. As a persistent interface a \ac{FHIR} server with the the \ac{FHIR} \ac{API} is used. Despite being very complex, the \ac{FHIR} standard is well known in the medical field and facilitates syntactically improved and interoperable storage of data.
+	\\
+	\\% Haben wir alles umgesetzt
+	The primary back-end requirements were met by using the \ac{FHIR} standard, which results in a persistent layer for storing data of participants and their respective period data. The chosen front-end technologies fulfill their purpose of providing a simple way to add, access, update and delete period tracker data for any given participant. By combining the back-end and front-end technologies all of the defined requirements have been met and fulfilled.
+	\\
+	\\%FHIR SERVER
+	Most limitations of the web application correlated with the \ac{FHIR} public test-server. Due to the large quantity of data, processing the entire database was not an option. Additionally, the public test-server contains data not matching the structure implemented in the back-end, which could potentially crash the web application. In addition, data entries were deleted sporadically.
+	\\
+	\\
+	However, just using a different \ac{FHIR} test server would not solve these problems, since there is no publicly available \ac{FHIR} test server which has no data collected by others. To solve this problem one would need to setup a personal \ac{FHIR} server for this use case.
+	\\
+	\\%FHIR linking ressources
+	Other technological problems encountered during development included linking the \textit{Patient} and \textit{QuestionnaireResponse} resources, connecting the front-end and back-end, and the fact that participants who only took part in the new study were difficult to treat as data entries.
+	\\
+	\\%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	Ergebnisse
+	\\
+	\\%Haben wir alles erreicht?
+	After implementing and combing all frameworks a web-application with an Axios back-end and the use of a \ac{FHIR} \ac{API} as a persistent data layer was created. This enables the creation, edition, update and deletion of participants and their respective cycle data. Additionally, it can be used with two different cycle tracker methods / apps, in this case Sensiplan\textsuperscript{\textcopyright} and Trackle. Moreover, data which is inserted will be validated by the front-end to ensure a high data quality in the database. Data consistency is achieved by tools like date-pickers instead of allowing users to freely enter data. To improve user workflow the front-end follows a simple colour-scheme and was implemented as a single-page application.
+	\\
+	\\%%Connection Front -und Backend
+	Complications occurred during implementation because Vuetify components returned certain data types that did not consistently match the existing data types in the back-end. This led to significant testing of the front- and back-end connection to ensure that the transferred data types matched the established types in the \textit{QuestionnaireResponses} schemata. The pregnancy selection, for example, was implemented as a selection of Strings in the front-end, but stored as Booleans in the \textit{QuestionnaireResponse}. This resulted in the string values being replaced with matching boolean values immediately before saving. The Boolean values returned by the back-end are in turn converted to string values while a \ac{HTTP}-GET request is executed.
+	\\
+	\\%% Patch Problem
+	An issue directly related to the \ac{FHIR} test server was the lack of examples on how to modify existing resources. Although \ac{HL7} provides good documentation, trouble-shooting errors was difficult without concrete implementations to compare to. This was most prominent during developing patch methods to gain access to nested data. On attempting a \ac{HTTP}-PATCH the status code 200 was returned to the front-end while the respective information did not change in the back-end. No fix for the \ac{HTTP}-PATCH method was found, hence the methods employing \ac{HTTP}-PATCH methods were rewritten to use \ac{HTTP}-PUT methods instead. This is less efficient as \ac{HTTP}-PUT replaces entire objects opposed to \ac{HTTP}-PATCH updating, creating and deleting objects as needed.
+	\\
+	\\%% FHIR Server Problem zu viele Daten s
+	Another challenge was presented by the size of the \ac{FHIR} server used to test the front-end. The amount of participants in the database prevented simply loading all present participants into the front-end. To bypass this, three \textit{Patient} objects were hard-coded as participants.
+	Those participants include all relative IDs and can be used to create different cycles with.
+	\\
+	\\%Cycle data
+	A further difficulty was to implemented a method in the back-end to display cycle data with a given period tracker or Sensiplan\textsuperscript{\textcopyright} ID, which turned out to be very complex, as Sensiplan\textsuperscript{\textcopyright} and period tracker are independent data entries in the back-end database.
+	\\
+	\\%% Cycle length
+	One of the issues that emerged during development was cycle length and data dependent on cycle length. While creating a cycle, its length is used to calculate and create the days in that cycle that are able to be selected and edited. Users could not edit specific days in a given cycle without setting the cycle length. By splitting the cycle creation dialogue into two pages, forcing users to set the cycle length on the first page, this was circumvented. When a cycle was edited, changing the cycle length given upon creation, data became inconsistent. Days not in range of the new cycle length were invalid and could not be processed, much like in an "array out of bounds" exception. This was solved making the cycle length immutable and instead forcing the user to recreate a cycle once a change in cycle length is detected.
+	\\
+	\\%% Securtiy -> NOCHMAL DRÜBER NACHDENKEN
+	A major weakness of the web application as of now is the lack of security, as there are no login mechanisms currently in place. This could be implemented relatively easily, and since no login method is provided, users could use their existing authentication system with the web application.
+	\\
+	\\
+	Furthermore the web application presently only supports Trackle as a digital period tracker and would have to be updated to work with additional digital period trackers. With the standards used in the project any period tracker should be able to be integrated using the same schemata as Trackle.
+	\\
+	\\%incomplete questionnaire
+	A further concern was empty values being passed from the front-end to the back-end. Incomplete inputs, especially empty inputs had to be saved as a dash in the back-end database, since an database post request should never be empty.
+	\\
+	\\%Stärke der Arbeit
+	The interface implemented the \ac{FHIR} standards, \textit{Patient} and \textit{QuestionnaireResponse} resources and enabled the separation of Sensiplan\textsuperscript{\textcopyright} and the period tracker \textit{QuestionnaireResponse}. The ability for the two \ac{FHIR} resources \textit{Patient} and \textit{QuestionnaireResponse} to work separately is a major benefit of our back-end implementation. While there are many \ac{FHIR}-based web applications for research purposes, no projects dealing with period trackers were found during research.
+	\\
+	\\%% Abschließende Worte zur Nutzbarkeit
+	Concluding by comparing the requirements and the results, including the limitations, it can be said that the overall purpose of a unique, cross-platform web application for managing, manipulating and storing data in an interoperable way has been achieved.
+	\newpage
+	\section{Conclusions}
+	
+	This project shows how a web application can be developed that supports study nurses and researchers in managing back-end data with a simple \ac{UI} front-end. Some challenges for further development of this prototype are the lack of validation in the back-end and the non-generic use of the \textit{QuestionnaireResponse} resource. This non-generic behaviour results from the dependence on the \ac{UKHD}, Sensiplan\textsuperscript{\textcopyright}, and the period tracker. The paper and project can be used for future studies, or alternatively to build similar projects working with \ac{FHIR}. Another option would be using the web application as a foundation to integrate a visualization dashboard to compare different \acp{PRO} or even configure the web application to work with future studies that employ \ac{FHIR} standards. To quantify the effectiveness of the web application compared to traditional data management a study would have to be done. Although it is safe to assume that like in virtually every comparable environment and increasing digitization in the medical world, a well thought out digital solution beats traditional methods.
+	
+	\newpage
+	
+	\hypersetup{colorlinks,breaklinks,
+		urlcolor=[RGB]{0,128,128},
+		linkcolor=[RGB]{0,128,128}}
+	
+
+\section{References}
+	\printbibliography
+\end{document}

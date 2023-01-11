@@ -1,0 +1,32 @@
+\contentsline {section}{List of abbreviations}{I}{section*.6}%
+\contentsline {section}{List of listings and figures}{II}{section*.7}%
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Subject and motivation}{1}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Subject and significance}{1}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Problem}{1}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.3}Motivation}{1}{subsubsection.1.1.3}%
+\contentsline {subsection}{\numberline {1.2}Challenges}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Objectives}{2}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Approach}{2}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Foundation}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Standards}{3}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}FHIR}{3}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Sensiplan\textsuperscript {\textcopyright }}{3}{subsubsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.2}Technologies}{3}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Axios}{3}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Docker}{4}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Express.js}{4}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Node.js}{4}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}Vue.js}{5}{subsubsection.2.2.5}%
+\contentsline {subsubsection}{\numberline {2.2.6}Vuetify}{5}{subsubsection.2.2.6}%
+\contentsline {subsubsection}{\numberline {2.2.7}Vue CLI}{5}{subsubsection.2.2.7}%
+\contentsline {subsubsection}{\numberline {2.2.8}REST}{5}{subsubsection.2.2.8}%
+\contentsline {section}{\numberline {3}Materials and methods}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Back-end}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Front-end}{10}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Results}{15}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Back-end}{15}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Front-end}{20}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Discussion}{42}{section.5}%
+\contentsline {section}{\numberline {6}Conclusions}{45}{section.6}%
+\contentsline {section}{\numberline {7}References}{46}{section.7}%

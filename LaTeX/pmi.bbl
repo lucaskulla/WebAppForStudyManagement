@@ -1,0 +1,415 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{lucaskulla_pmi_2023}{software}{}
+      \name{author}{1}{}{%
+        {{hash=f9558537fbaedf09f63c435801e6ca83}{%
+           family={lucaskulla},
+           familyi={l\bibinitperiod}}}%
+      }
+      \strng{namehash}{f9558537fbaedf09f63c435801e6ca83}
+      \strng{fullhash}{f9558537fbaedf09f63c435801e6ca83}
+      \strng{bibnamehash}{f9558537fbaedf09f63c435801e6ca83}
+      \strng{authorbibnamehash}{f9558537fbaedf09f63c435801e6ca83}
+      \strng{authornamehash}{f9558537fbaedf09f63c435801e6ca83}
+      \strng{authorfullhash}{f9558537fbaedf09f63c435801e6ca83}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{10}
+      \field{month}{1}
+      \field{note}{original-date: 2023-01-10T18:55:37Z}
+      \field{title}{{PMI}}
+      \field{urlday}{11}
+      \field{urlmonth}{1}
+      \field{urlyear}{2023}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/lucaskulla/WebAppForStudyManagement
+      \endverb
+      \verb{url}
+      \verb https://github.com/lucaskulla/WebAppForStudyManagement
+      \endverb
+    \endentry
+    \entry{noauthor_overview_nodate}{online}{}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labeltitlesource}{title}
+      \field{title}{Overview - {FHIR} v4.3.0}
+      \field{urlday}{3}
+      \field{urlmonth}{12}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Overview - FHIR v4.3.0:/home/beluzzi/Zotero/storage/5YSY42V6/overview.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.hl7.org/fhir/overview.html
+      \endverb
+      \verb{url}
+      \verb https://www.hl7.org/fhir/overview.html
+      \endverb
+    \endentry
+    \entry{noauthor_safety_nodate}{online}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{title}{Safety - Sensiplan, the method for natural family planning}
+      \field{titleaddon}{Sensiplan®, ein Angebot der {MW} Malteser Werke {gGmbH}}
+      \field{urlday}{3}
+      \field{urlmonth}{12}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/beluzzi/Zotero/storage/RERIDU3V/safety.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sensiplan.de/en/what-is-sensiplan/safety
+      \endverb
+      \verb{url}
+      \verb https://www.sensiplan.de/en/what-is-sensiplan/safety
+      \endverb
+    \endentry
+    \entry{noauthor_home_nodate}{online}{}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{title}{Home - Sensiplan, the method for natural family planning}
+      \field{titleaddon}{Sensiplan®, ein Angebot der {MW} Malteser Werke {gGmbH}}
+      \field{urlday}{8}
+      \field{urlmonth}{1}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/beluzzi/Zotero/storage/ZM2PQU4V/en.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sensiplan.de/en
+      \endverb
+      \verb{url}
+      \verb https://www.sensiplan.de/en
+      \endverb
+    \endentry
+    \entry{noauthor_getting_nodate}{online}{}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labeltitlesource}{title}
+      \field{title}{Getting Started {|} Axios Docs}
+      \field{urlday}{3}
+      \field{urlmonth}{12}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Getting Started | Axios Docs:/home/beluzzi/Zotero/storage/UH5EKPTY/intro.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://axios-http.com/docs/intro
+      \endverb
+      \verb{url}
+      \verb https://axios-http.com/docs/intro
+      \endverb
+    \endentry
+    \entry{noauthor_industry-leading_2021}{online}{}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Read about our industry-leading Docker container runtimes. Docker Engine allows containerized apps to run consistently on any infrastructure — from anywhere.}
+      \field{day}{28}
+      \field{langid}{american}
+      \field{month}{9}
+      \field{title}{The Industry-Leading Container Runtime - Docker}
+      \field{urlday}{5}
+      \field{urlmonth}{12}
+      \field{urlyear}{2022}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.docker.com/products/container-runtime/
+      \endverb
+      \verb{url}
+      \verb https://www.docker.com/products/container-runtime/
+      \endverb
+    \endentry
+    \entry{noauthor_express_nodate}{online}{}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{title}{Express - Node.js web application framework}
+      \field{urlday}{3}
+      \field{urlmonth}{12}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/beluzzi/Zotero/storage/XAGDUQ8T/expressjs.com.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://expressjs.com/
+      \endverb
+      \verb{url}
+      \verb https://expressjs.com/
+      \endverb
+    \endentry
+    \entry{nodejs_about_nodate}{online}{}
+      \name{author}{1}{}{%
+        {{hash=4b00bbf4971bea7d45e4ee343c881d44}{%
+           family={Node.js},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{4b00bbf4971bea7d45e4ee343c881d44}
+      \strng{fullhash}{4b00bbf4971bea7d45e4ee343c881d44}
+      \strng{bibnamehash}{4b00bbf4971bea7d45e4ee343c881d44}
+      \strng{authorbibnamehash}{4b00bbf4971bea7d45e4ee343c881d44}
+      \strng{authornamehash}{4b00bbf4971bea7d45e4ee343c881d44}
+      \strng{authorfullhash}{4b00bbf4971bea7d45e4ee343c881d44}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Node.js® is a {JavaScript} runtime built on Chrome's V8 {JavaScript} engine.}
+      \field{langid}{english}
+      \field{title}{About}
+      \field{titleaddon}{Node.js}
+      \field{urlday}{3}
+      \field{urlmonth}{12}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/beluzzi/Zotero/storage/W26XK78E/about.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://nodejs.org/en/about/
+      \endverb
+      \verb{url}
+      \verb https://nodejs.org/en/about/
+      \endverb
+    \endentry
+    \entry{noauthor_introduction_nodate}{online}{}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labeltitlesource}{title}
+      \field{title}{Introduction {|} Vue.js}
+      \field{urlday}{3}
+      \field{urlmonth}{12}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Introduction | Vue.js:/home/beluzzi/Zotero/storage/YZHKDBHU/introduction.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://vuejs.org/guide/introduction.html
+      \endverb
+      \verb{url}
+      \verb https://vuejs.org/guide/introduction.html
+      \endverb
+    \endentry
+    \entry{noauthor_material_nodate}{online}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Build beautiful, usable products faster. Material Design is an adaptable system—backed by open-source code—that helps teams build high quality digital experiences.}
+      \field{langid}{english}
+      \field{title}{Material Design}
+      \field{titleaddon}{Material Design}
+      \field{urlday}{3}
+      \field{urlmonth}{12}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/beluzzi/Zotero/storage/B7Q7P59R/m3.material.io.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://m3.material.io/
+      \endverb
+      \verb{url}
+      \verb https://m3.material.io/
+      \endverb
+    \endentry
+    \entry{noauthor_why_nodate}{online}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Vuetify has an extremely active community, provides easy to use Material Design components and is consistently updat...}
+      \field{title}{Why you should be using Vuetify}
+      \field{titleaddon}{Vuetify}
+      \field{urlday}{3}
+      \field{urlmonth}{12}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/beluzzi/Zotero/storage/4BHSRXI4/why-vuetify.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://vuetifyjs.com/en/introduction/why-vuetify/
+      \endverb
+      \verb{url}
+      \verb https://vuetifyjs.com/en/introduction/why-vuetify/
+      \endverb
+    \endentry
+    \entry{noauthor_overview_nodate-1}{online}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{abstract}{🛠️ Standard Tooling for Vue.js Development}
+      \field{langid}{american}
+      \field{title}{Overview {|} Vue {CLI}}
+      \field{urlday}{3}
+      \field{urlmonth}{12}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/beluzzi/Zotero/storage/6U3YH9NM/guide.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://cli.vuejs.org/guide/
+      \endverb
+      \verb{url}
+      \verb https://cli.vuejs.org/guide/
+      \endverb
+    \endentry
+    \entry{noauthor_what_nodate}{online}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{abstract}{{REST} is an acronym for {REpresentational} State Transfer. It is an architectural style for hypermedia systems and was first presented by Roy Fielding.}
+      \field{langid}{american}
+      \field{title}{What is {REST}}
+      \field{titleaddon}{{REST} {API} Tutorial}
+      \field{urlday}{3}
+      \field{urlmonth}{12}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://restfulapi.net/
+      \endverb
+      \verb{url}
+      \verb https://restfulapi.net/
+      \endverb
+    \endentry
+    \entry{noauthor_swagger_nodate}{online}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{title}{Swagger {UI}}
+      \field{urlday}{8}
+      \field{urlmonth}{1}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Swagger UI:/home/beluzzi/Zotero/storage/KWFQHHEN/swagger-ui.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://hapi.fhir.org/baseR4/swagger-ui/
+      \endverb
+      \verb{url}
+      \verb https://hapi.fhir.org/baseR4/swagger-ui/
+      \endverb
+    \endentry
+    \entry{noauthor_patient_nodate}{online}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{title}{Patient - {FHIR} v5.0.0-cibuild}
+      \field{urlday}{9}
+      \field{urlmonth}{1}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Patient - FHIR v5.0.0-cibuild:/home/beluzzi/Zotero/storage/2HIS96NC/patient.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://build.fhir.org/patient.html
+      \endverb
+      \verb{url}
+      \verb https://build.fhir.org/patient.html
+      \endverb
+    \endentry
+    \entry{noauthor_questionnaireresponse_nodate}{online}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{title}{{QuestionnaireResponse} - {FHIR} v5.0.0-cibuild}
+      \field{urlday}{9}
+      \field{urlmonth}{1}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb QuestionnaireResponse - FHIR v5.0.0-cibuild:/home/beluzzi/Zotero/storage/77W8GUFA/questionnaireresponse.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://build.fhir.org/questionnaireresponse.html
+      \endverb
+      \verb{url}
+      \verb https://build.fhir.org/questionnaireresponse.html
+      \endverb
+    \endentry
+    \entry{noauthor_trackle_nodate}{online}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Der trackle Zykluscomputer hilft Dir, einfach und sicher Deinen Eisprung zu berechnen. Jetzt informieren und symptothermale Methode nutzen!}
+      \field{langid}{german}
+      \field{title}{trackle Verhütungscomputer für hormonfreie Verhütung}
+      \field{titleaddon}{trackle {GmbH}}
+      \field{urlday}{8}
+      \field{urlmonth}{1}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/beluzzi/Zotero/storage/GH2W7XYJ/trackle.de.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://trackle.de/
+      \endverb
+      \verb{url}
+      \verb https://trackle.de/
+      \endverb
+    \endentry
+    \entry{noauthor_uniklinik_nodate}{online}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Informationen über die Uniklinik Köln für Patienten, Besucher, Studierende, Wissenschaftler, Journalisten und Interessierte}
+      \field{title}{Uniklinik Köln - Startseite}
+      \field{urlday}{8}
+      \field{urlmonth}{1}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/home/beluzzi/Zotero/storage/VBY3U9WK/www.uk-koeln.de.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.uk-koeln.de/
+      \endverb
+      \verb{url}
+      \verb https://www.uk-koeln.de/
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
